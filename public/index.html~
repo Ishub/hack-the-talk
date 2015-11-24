@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    
+    <title> Hack the talk: Emotion detection in speech</title>
+  </head>
+  <body>
+
+<H1 align= center> HACK THE TALK </h1>
+<h2 align= center colour= green> <ul>Emotion Detection in speech </ul></h2>
+<form method="post" action="/add_recording" enctype="multipart/form-data">
+  <label>Name: </label>
+  <input type="text" name="user_name" maxlength="20" size="20" value="Enter">
+  <br>
+  <label>Audio File: </label>
+  <input type="file" name="user_audio"/>
+  <br>
+  <input value="Upload" type="submit">
+</form>  
+<form>
+function uploadForm() {
+    var form = new FormData(document.getElementById("my_form"));
+    form.append("user_audio_blob", audioBlob);
+    var request = new XMLHttpRequest();
+    var async = true;
+    request.open("POST", "/my_form_handler", async);
+    if (async) {
+        request.onreadystatechange = function() {
+            if(request.readyState == 4 && request.status == 200) {
+                var response = null;
+                try {
+                    response = JSON.parse(request.responseText);
+                } catch (e) {
+                    response = request.responseText;
+                }
+                uploadFormCallback(response);
+            }
+        }
+    }
+    request.send(form);
+}
+</form>
+</body>
+</html>

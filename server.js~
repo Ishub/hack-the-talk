@@ -1,0 +1,4 @@
+var express = require('express');
+
+server.use(express.static(__dirname + '/public')); // static content
+module.exports = server;
